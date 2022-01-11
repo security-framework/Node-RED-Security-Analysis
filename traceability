@@ -1,0 +1,164 @@
+node-red\packages\node_modules\@node-red
+├───editor-api                        Implements the Node-RED HTTP Admin API (which is mostly used by the browser-based editor) by providing an Express Application.
+│   │   .npmignore                    In the DFD, this API is represented by the connections between editor GUI/command-line admin tool and the Node-RED instance.
+│   │   LICENSE
+│   │   package.json
+│   │   README.md
+│   │
+│   └───lib
+│       │   index.js
+│       │   util.js
+│       │
+│       ├───admin                     Builds adminApp which is an Express application consisting of middleware functions. Those middleware functions bridge the gap
+│       │       context.js            between the external API exposed to the outside and the Node-RED runtime object and its internal API runtimeAPI.
+│       │       flow.js
+│       │       flows.js
+│       │       index.js
+│       │       nodes.js
+│       │       plugins.js
+│       │       settings.js
+│       │
+│       ├───auth                      Provides middleware functions (built on Express and Passport) to perform authentication and to check permissions for API calls.
+│       │       clients.js            Includes session management and token creation.
+│       │       index.js
+│       │       permissions.js
+│       │       strategies.js
+│       │       tokens.js
+│       │       users.js
+│       │
+│       └───editor                    Builds editorApp which is an Express application that realizes the extra middleware functions / API calls that come with using
+│               comms.js              the browser-based editor (in contrast to the command-line admin tool which offers less functionality and thus needs less middle-
+│               credentials.js        ware and less API calls).
+│               index.js
+│               library.js
+│               locales.js
+│               projects.js
+│               settings.js
+│               sshkeys.js
+│               theme.js
+│               ui.js
+│
+├───editor-client
+│   │   ...
+│   │
+│   ├───locales
+│   │       ...
+│   │
+│   ├───src
+│   │       ...
+│   │
+│   └───templates
+│           ...
+│
+├───nodes
+│   │   ...
+│   │
+│   ├───core
+│   │       ...
+│   │
+│   ├───examples
+│   │       ...
+│   │
+│   ├───icons
+│   │       ...
+│   │
+│   └───locales
+│           ...
+│
+├───registry                          Node-RED node registry. Manages the available and usable node modules. Node modules can either be loaded from the local file-system
+│   │   .npmignore                    or from external sources. The latter is done by using npm.
+│   │   LICENSE
+│   │   package.json
+│   │   README.md
+│   │
+│   └───lib
+│           deprecated.js
+│           externalModules.js
+│           index.js
+│           installer.js
+│           library.js
+│           loader.js
+│           localfilesystem.js
+│           plugins.js
+│           registry.js
+│           subflow.js
+│           util.js
+│
+├───runtime                         Core flow engine of Node-RED depicted in the DFD as runtime object. Provides Node-RED's main functionality and keeps state of the current
+│   │   .npmignore                  active configuration.
+│   │   LICENSE
+│   │   package.json
+│   │   README.md
+│   │
+│   ├───lib
+│   │   │   index.js
+│   │   │   plugins.js
+│   │   │   settings.js
+│   │   │
+│   │   ├───api                     Provides the external API for accessing the runtime object. Is used by the middleware functions built in @node-red/editor-api. Depicted in
+│   │   │       comms.js            the DFD by the connections between admin API and runtime object.
+│   │   │       context.js
+│   │   │       flows.js
+│   │   │       index.js
+│   │   │       library.js
+│   │   │       nodes.js
+│   │   │       plugins.js
+│   │   │       projects.js
+│   │   │       settings.js
+│   │   │
+│   │   ├───flows                   Implements the flow framework and typical management functions, e.g. getFlows, setFlows, startFlows etc.
+│   │   │       Flow.js
+│   │   │       index.js
+│   │   │       Subflow.js
+│   │   │       util.js
+│   │   │
+│   │   ├───library                 Implements user libraries that contain nodes and flows. The two types of libraries are first the library created at runtime in the editor
+│   │   │       examples.js         and second libraries imported from other locations (e.g. the local-filesystem).
+│   │   │       index.js
+│   │   │       local.js
+│   │   │
+│   │   ├───nodes                   Implementation of nodes. Foundation of the Node-RED core functionality.
+│   │   │   │   credentials.js
+│   │   │   │   index.js
+│   │   │   │   Node.js
+│   │   │   │
+│   │   │   └───context             For context management. Can be rather stored in memory or in the local-filesystem.
+│   │   │           index.js
+│   │   │           localfilesystem.js
+│   │   │           memory.js
+│   │   │
+│   │   └───storage                 Configures where the Node-RED runtime stores data. This module corresponds to the storage block in the DFD. Accessing the storage is done
+│   │       │   index.js            via API functions provided by this module, e.g. saving/getting flows/credentials/settings/sessions etc.
+│   │       │
+│   │       └───localfilesystem
+│   │           │   index.js
+│   │           │   library.js
+│   │           │   sessions.js
+│   │           │   settings.js
+│   │           │   util.js
+│   │           │
+│   │           └───projects
+│   │               │   defaultFileSet.js
+│   │               │   index.js
+│   │               │   Project.js
+│   │               │
+│   │               ├───git
+│   │               │       authCache.js
+│   │               │       authServer.js
+│   │               │       authWriter.js
+│   │               │       index.js
+│   │               │       node-red-ask-pass.sh
+│   │               │       node-red-ssh.sh
+│   │               │
+│   │               └───ssh
+│   │                       index.js
+│   │                       keygen.js
+│   │
+│   └───locales
+│           ...
+│
+└───util
+	│   ...
+	│
+	└───lib
+			...
